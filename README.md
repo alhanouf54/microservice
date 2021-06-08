@@ -1,7 +1,8 @@
 pass 
 
-[![CircleCI](https://app.circleci.com/pipelines/github/alhanouf54/microservice/6/workflows/e14e5cba-6085-49b0-8dba-c8797acc2ba2)(https://circleci.com/gh/circleci/circleci-docs)
 
+
+[![CircleCI](https://circleci.com/gh/circleci/circleci-docs.svg?style=svg)](https://circleci.com/gh/circleci/circleci-docs)
 ## Project Overview
 
 In this project, you will apply the skills you have acquired in this course to operationalize a Machine Learning Microservice API. 
