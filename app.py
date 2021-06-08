@@ -6,6 +6,8 @@ import pandas as pd
 import joblib
 from sklearn.preprocessing import StandardScaler
 
+
+
 app = Flask(__name__)
 LOG = create_logger(app)
 LOG.setLevel(logging.INFO)
@@ -13,9 +15,11 @@ LOG.setLevel(logging.INFO)
 def scale(payload):
     """Scales Payload"""
     
-    LOG.info(f"Scaling Payload: \n {payload}")
+    LOG.info(f"Scaling Payload: \n{payload}")
     scaler = StandardScaler().fit(payload.astype(float))
+    LOG.info(f"line 18 scaler : \n{scaler}")
     scaled_adhoc_predict = scaler.transform(payload.astype(float))
+    LOG.info(f"line 20 scaled_adhoc_predict: \n{scaled_adhoc_predict}")
     return scaled_adhoc_predict
 
 @app.route("/")
@@ -23,7 +27,7 @@ def home():
     html = "<h3>Sklearn Prediction Home</h3>"
     return html.format(format)
 
-@app.route("/predict", methods=['POST'])
+@app.route("/predict", methods=['GET', 'POST'])
 def predict():
     """Performs an sklearn prediction
         
@@ -60,10 +64,11 @@ def predict():
     LOG.info(f"Inference payload DataFrame: \n{inference_payload}")
     # scale the input
     scaled_payload = scale(inference_payload)
+    LOG.info(f"line 65 scaled_payload: \n{scaled_payload}")
     # get an output prediction from the pretrained model, clf
     prediction = list(clf.predict(scaled_payload))
     # TO DO:  Log the output prediction value
-    LOG.info(f"Output prediction:{prediction}")
+    LOG.info(f"prediction: {prediction}")
     return jsonify({'prediction': prediction})
 
 if __name__ == "__main__":
