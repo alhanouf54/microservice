@@ -27,7 +27,7 @@ def home():
     html = "<h3>Sklearn Prediction Home</h3>"
     return html.format(format)
 
-@app.route("/predict", methods=['GET', 'POST'])
+@app.route("/predict", methods=['POST'])
 def predict():
     """Performs an sklearn prediction
         
